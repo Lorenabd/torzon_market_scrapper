@@ -12,9 +12,9 @@ class WindowContinue(QDialog):
         #window = QWidget()
         self.setWindowTitle('Scrapper Information!')
         
-
-        message = QLabel("If you want to continue extracting data\n go to the category and press continue.\n If not press Exit to finish extraction")
         input_label = QLabel("Enter the name of the output file:")
+        message = QLabel("If you want to continue extracting data\ngo to the category and press continue.\nIf not press Exit to finish extraction")
+        
         
         buttons = QDialogButtonBox(
             QDialogButtonBox.Ok | QDialogButtonBox.Cancel,
@@ -26,9 +26,9 @@ class WindowContinue(QDialog):
         buttons.rejected.connect(self.reject)
 
         layout = QVBoxLayout(self)
-        layout.addWidget(message)
         layout.addWidget(input_label)
         layout.addWidget(self.input_field)
+        layout.addWidget(message)        
         layout.addWidget(buttons)
 
         self.setLayout(layout)

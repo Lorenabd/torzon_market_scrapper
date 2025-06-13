@@ -5,26 +5,28 @@
     "user_info": {
       "user": [],
       "user_level": [],
+      "dict_user_level": {},
       "user_trust_level":[],
+      "dict_join_year_user": {},
+      "user_rating":[],
+      "dict_trust_user_level": {},
       "join_year_user": [],
-      "num_feedback_user":[],
-      "orders": {
-        "completed": []
-      }
+      "dict_user_rating": {}
     },
     "market_info": {
       "specialized": [],
-      "product_type": [],
       "price": [],
+      "total_product":[],
+      "dict_total_product": {},
       "payment_method":[]
     },
     "sales_info": {
-      "transactions":[]
+      "total_sales":[],
+      "dict_total_sales": {}
     },
     "quality_info": {
-      "stealth_level": [],
-      "product_quality_level": [],
-      "price_value_rating": []
+      "total_reviews": [],
+      "dict_total_reviews": {}
     },
     "place_info": {
       "place": []

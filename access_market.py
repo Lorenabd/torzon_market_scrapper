@@ -38,11 +38,11 @@ class AccessMarket():
         connect_button = main_driver.find_element(By.XPATH,'//*[@id="connectButton"]')
         connect_button.click()
         time.sleep(3)
-        url="http://alphaa3u7wqyqjqctrr44bs76ylhfibeqoco2wyya4fnrjwr77x2tbqd.onion/listing_category?id=1" #Alphabay URL
+        url="http://torzon4kv5swfazrziqvel2imhxcckc4otcvopiv5lnxzpqu4v4m5iyd.onion" #Torzon URL
         main_driver.get(url)
 
         WebDriverWait(main_driver,300).until( #5 minutes
-                        EC.presence_of_element_located((By.XPATH,'/html/body/header/nav/div/div[2]/ul/li[1]/a'))
+                        EC.presence_of_element_located((By.XPATH,'/html/body/nav[1]/div/a[1]/img'))
         )
         self.pop_up_info(main_driver)
         
@@ -59,9 +59,9 @@ class AccessMarket():
         continue_button.clicked.connect(lambda: self.close_pop_up_info(window,main_driver,input_field.text()))
 
         layout = QVBoxLayout()
-        layout.addWidget(message)
         layout.addWidget(input_label)
         layout.addWidget(input_field)
+        layout.addWidget(message)
         layout.addWidget(continue_button)
 
 
