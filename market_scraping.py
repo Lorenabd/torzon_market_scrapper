@@ -12,6 +12,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 from elements_scrapper import ElementsScrapper
+import os
 
 
 class ScrapingMarket:
@@ -59,7 +60,7 @@ class ScrapingMarket:
         if result is None:
             print("Extraction finished.")
         else:
-            print(f"Scraping next category into “{result}”…\n")
+            print(f"Saving extracted data to “{result}”…\n")
             self.file_output_name = result
             self.get_data()
 
@@ -219,13 +220,19 @@ class ScrapingMarket:
 
                 user_name_row = []
 
-                for index, username in enumerate(clean_matches_user):
-                    if matches[index] not in self.config["text"]["all"]:
+                for index, username in enumerate(
+                    clean_matches_user
+                ):  # goes through both users extracted
+                    if (
+                        matches[index] not in self.config["text"]["all"]
+                    ):  # checks if prooduct has already been extracted
                         if not any(
                             username in sublist
                             for sublist in self.config["user_info"]["user"]
-                        ):
-                            if username not in user_name_row:
+                        ):  # if user is not already saved
+                            if (
+                                username not in user_name_row
+                            ):  # if user is duplicated in same row
                                 self.click_order_button(row_iteration, column_iteration)
                                 windows = self.point_to_latest_opened_page()
                                 WebDriverWait(self.main_driver, 200).until(
@@ -365,7 +372,7 @@ class ScrapingMarket:
 
                     else:
                         print(
-                            f"Product {matches[index]} is duplicated and won't be scrapped"
+                            f"Product {matches[index]} is duplicated and won't be saved again"
                         )
 
                 for index, product in enumerate(matches):
@@ -416,7 +423,7 @@ class ScrapingMarket:
                     last_page = True
 
             except:
-                print("No mor avaialable pages")
+                print("No more avaialable pages")
                 break
 
         df_data_extracted = pd.DataFrame(
@@ -436,5 +443,13 @@ class ScrapingMarket:
                 "Total Sales": self.config["sales_info"]["total_sales"],
             }
         ).sort_values(by="Seller")
-        df_data_extracted.to_csv(f"{self.file_output_name}.csv", index=False, sep=",")
+        os.makedirs("DATA_EXTRACTED", exist_ok=True)
+        df_data_extracted.to_excel(
+            os.path.join("DATA_EXTRACTED", f"{self.file_output_name}.xlsx"), index=True
+        )
+        df_data_extracted.to_csv(
+            os.path.join("DATA_EXTRACTED", f"{self.file_output_name}.csv"),
+            index=False,
+            sep=",",
+        )
         self.continue_scrapping()

@@ -136,6 +136,5 @@ class ElementsScrapper:
                 num_product_selling = re.search(r"\d+", num_product_selling)
                 if num_product_selling:
                     num_product_selling = num_product_selling.group()
-                    print(num_product_selling)
                 total_products = total_products + int(num_product_selling)
         return total_products

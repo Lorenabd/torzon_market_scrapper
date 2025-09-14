@@ -18,7 +18,7 @@ class WindowContinue(QDialog):
         self.pop_up_info()
 
     def pop_up_info(self):
-        self.setWindowTitle("Scrapper Information!")
+        self.setWindowTitle("Important Information!")
 
         input_label = QLabel("Enter the name of the output file:")
         message = QLabel(
