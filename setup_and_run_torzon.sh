@@ -18,7 +18,8 @@ fi
 source venv/bin/activate  # On Linux/macOS
 
 echo "Installing dependencies from requirements.txt..."
-pip install --timeout=300 -r requirements.txt
+pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
 
 # Source the environment variables from env.sh
 echo "Setting environment variables from env.sh..."
