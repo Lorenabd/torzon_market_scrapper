@@ -37,7 +37,7 @@ class AccessMarket:
         main_driver = webdriver.Firefox(options=options)
         connect_button = main_driver.find_element(By.XPATH, '//*[@id="connectButton"]')
         connect_button.click()
-        time.sleep(3)
+        time.sleep(10)
         url = "http://torzon4kv5swfazrziqvel2imhxcckc4otcvopiv5lnxzpqu4v4m5iyd.onion"  # Torzon URL
         main_driver.get(url)
 
